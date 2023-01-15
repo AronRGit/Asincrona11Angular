@@ -1,0 +1,29 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()"  class="container-sm">
+    <section class="form-group m-4">
+      <label for="nombre">Nombre:</label>
+      <input type="text"  class="form-control" formControlName="nombre">
+      <section *ngIf="formSubmitted && nombre?.invalid" class="alert alert-danger">
+        <section *ngIf="nombre?.errors?.['required']"> El nombre es requerido</section>
+        <section *ngIf="nombre?.errors?.['pattern']">El nombre debe tener al menos 10 caracteres</section>
+      </section>
+    </section>
+    <section class="form-group m-4">
+      <label for="email">Email:</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <section *ngIf="formSubmitted && email?.invalid" class="alert alert-danger">
+        <section *ngIf="email?.errors?.['required']">El email es requerido</section>
+        <section *ngIf="email?.errors?.['email']">El email es inválido
+        </section>
+    </section>
+  </section>
+  <section class="form-group m-4">
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" class="form-control" formControlName="mensaje"></textarea>
+    <section *ngIf="formSubmitted && mensaje?.invalid" class="alert alert-danger">
+      <section *ngIf="mensaje?.errors?.['required']">El mensaje es requerido</section>
+      <section *ngIf="mensaje?.errors?.['pattern']">El mensaje no puede superar los 500 caracteres</section>
+    </section>
+  </section>
+  <button type="submit" class="btn btn-primary">Confirmar</button>
+  <p *ngIf="mensajevalido">Todos los datos son validos</p>
+</form>    
